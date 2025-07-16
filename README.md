@@ -4,6 +4,11 @@ Repo containing the code to reproduce the results from paper on history matching
 Additionally to the code provided below, to generate DALEC Crop runs, we require to have a local copy of the CARDAMOM repository (https://github.com/GCEL/CARDAMOM), 
 and of DALEC Crop (https://github.com/GCEL/DALEC-CropN)
 
+The majority of the history matching code is based on the R package hmer: Iskauskas A, Vernon I, Goldstein M, Scarponi D, McCreesh N, McKinley TJ, White RG
+  (2024). "Emulation and History Matching Using the hmer Package." _Journal of
+  Statistical Software_, *109*(10), 1-48. doi:10.18637/jss.v109.i10
+  <https://doi.org/10.18637/jss.v109.i10>.
+
 ## Requirements
 - R
 - linux computer/ server
