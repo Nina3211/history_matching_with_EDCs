@@ -15,8 +15,8 @@ and of DALEC Crop (https://github.com/GCEL/DALEC-CropN)
 ## This repository containts the following files: 
 ### Code  
 - DALEC crop ranges and priors (for CARDAMOM) (parameter_ranges.R)
-- code to run the history matching for the synthetic experiment
-- code to run the history matching for the ATEC experiment
+- code to run the history matching for the synthetic experiment (synth_example_hm_ranges.R)
+- code to run the history matching for the ATEC experiment (ATEC_year1_hm_ranges.R and ATEC_year2_hm_ranges.R)
 - code to apply the Ecological and Dynamic Constraints (EDCs) (edc1.R and edc2.R)
 - code to build the initial Latin Hypercube Design to train the first wave of emulators (build_initial_LHD.R)
 - code to propose new points at each wave (point_proposal.R)
