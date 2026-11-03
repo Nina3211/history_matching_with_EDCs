@@ -7,14 +7,6 @@
 # Same emulator settings (order 2, theta = 0.6, beta.var, add = TRUE), same targets,
 # same point proposal and maximin selection as before.
 #
-# Changes compared with the paper's runs (3. also drops runs with non-finite outputs,
-# which only occurs without EDCs):
-#   1. BUG FIX: discrepancies are matched to the right outputs. hmer assigns them by
-#      position in output_names; before, they followed the order of `targets`, so the
-#      Ra:GPP and yield:GPP targets got no discrepancy and the SOM targets got theirs.
-#   2. BUG FIX (in edc2.R): EDC_SOM1 is now checked on the simulator output.
-#   3. Logging only: emulators of all waves, all wave data, per-wave table, emulator
-#      validation metrics, DALEC-Crop evaluation counts and time per stage are saved.
 #
 # Needs: hmer, dplyr, purrr, tibble, parallel, lhs; the CARDAMOM R functions;
 # PROJECT / new_PROJECT / drivers; ranges_df_with_priors; and the sourced
@@ -33,10 +25,6 @@ run_dalec <- function(inputs, ...) {
   drop_nonfinite(generate_input_output_DALEC_Crop(inputs, ...))
 }
 
-# Remove runs whose outputs are infinite or missing. With EDCs these points are already
-# removed by the output-EDC check (edc2.R), so this only matters without EDCs (Exp. 2),
-# where they would otherwise break the emulator fit. Handles both return formats of
-# generate_input_output_DALEC_Crop (data frame, or list with LAI_curves in the final wave).
 output_cols <- c("harvest_vector", "EDC_SOM1", "EDC_SOM2", "ra_GPP_ratio",
                  "yield_GPP_ratio", "DS_max")
 drop_nonfinite <- function(out) {
@@ -69,7 +57,6 @@ safe_save <- function(obj, file) {
 
 # ---- helpers ------------------------------------------------------------------------
 # ranges of the next wave: min/max of the new training points, widened by `buffer`
-# (0.025 in the synthetic script, 0.01 in the ATEC scripts)
 find_ranges_fct <- function(input_data, original_ranges, buffer) {
   input_data <- input_data[names(original_ranges)]
   ranges <- setNames(purrr::map(names(original_ranges), function(nm) {
