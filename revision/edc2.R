@@ -1,6 +1,4 @@
 # the second set of EDCs requires us to run DALEC Crop to check the simulator output
-# REVISION: only change is the bug fix below (EDC_SOM1 was never applied; fail_EDC_SOM2
-# appeared twice) and a counter for DALEC-Crop evaluations (used if hm_runner.R is loaded).
 check_edcs2 = function(input_pars){
   if (exists("count_dalec")) count_dalec(nrow(input_pars))
   # this function assumes that we have the drivers and CARDAMOM already set up
@@ -25,7 +23,7 @@ check_edcs2 = function(input_pars){
   cat("fail fail_EDC_SOM1: ", sum(fail_EDC_SOM1), "\n")
   cat("fail fail_EDC_SOM2: ", sum(fail_EDC_SOM2), "\n")
   
-  fail_EDCs = fail_DS | fail_EDC_SOM1 | fail_EDC_SOM2   # BUG FIX: was fail_EDC_SOM2 twice
+  fail_EDCs = fail_DS | fail_EDC_SOM1 | fail_EDC_SOM2  
   pass_EDCs = !fail_EDCs
   
   # ensure minimum pool values are >= 0 and /= NaN (which is automatic in checking >=0)and not infinity 
